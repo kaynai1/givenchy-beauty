@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIVENCHY BEAUTY ∷ 纪梵希美妆官方旗舰店</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <p>免费配送 | 会员专享礼遇 | 全国热线：400 920 1177</p>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <button class="menu-toggle" id="menuToggle" aria-label="菜单">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            
+            <div class="logo">
+                <a href="#">
+                    <span class="logo-main">GIVENCHY</span>
+                    <span class="logo-sub">BEAUTY</span>
+                </a>
+            </div>
+
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#hero">首页</a></li>
+                <li class="dropdown">
+                    <a href="#products">彩妆 <span class="arrow">▾</span></a>
+                    <div class="dropdown-content">
+                        <a href="#">唇膏</a>
+                        <a href="#">粉底</a>
+                        <a href="#">眼影</a>
+                        <a href="#">腮红</a>
+                    </div>
+                </li>
+                <li class="dropdown">
+                    <a href="#products">护肤 <span class="arrow">▾</span></a>
+                    <div class="dropdown-content">
+                        <a href="#">精华</a>
+                        <a href="#">面霜</a>
+                        <a href="#">面膜</a>
+                    </div>
+                </li>
+                <li class="dropdown">
+                    <a href="#products">香水 <span class="arrow">▾</span></a>
+                    <div class="dropdown-content">
+                        <a href="#">女士香水</a>
+                        <a href="#">男士香水</a>
+                        <a href="#">中性香水</a>
+                    </div>
+                </li>
+                <li><a href="#story">品牌故事</a></li>
+            </ul>
+
+            <div class="nav-icons">
+                <a href="#" class="icon-search" aria-label="搜索">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+                    </svg>
+                </a>
+                <a href="#" class="icon-user" aria-label="账户">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
+                    </svg>
+                </a>
+                <a href="#" class="icon-cart" aria-label="购物车">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/>
+                    </svg>
+                    <span class="cart-count">0</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Slider -->
+    <section class="hero" id="hero">
+        <div class="slider">
+            <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=1920&q=80')">
+                <div class="slide-content">
+                    <span class="slide-label">新品上市</span>
+                    <h1>高定唇妆</h1>
+                    <p>丝绒质地，极致色彩<br>缔造无与伦比的唇部体验</p>
+                    <a href="#" class="btn-primary">探索更多</a>
+                </div>
+            </div>
+            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=1920&q=80')">
+                <div class="slide-content">
+                    <span class="slide-label">明星单品</span>
+                    <h1>四宫格散粉</h1>
+                    <p>轻盈细腻，柔焦定妆<br>打造丝绒般完美肌肤</p>
+                    <a href="#" class="btn-primary">立即选购</a>
+                </div>
+            </div>
+            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1541643600914-78b084683601?w=1920&q=80')">
+                <div class="slide-content">
+                    <span class="slide-label">经典香氛</span>
+                    <h1>心无禁忌</h1>
+                    <p>黑白交织的优雅<br>释放独特迷人魅力</p>
+                    <a href="#" class="btn-primary">探索香氛</a>
+                </div>
+            </div>
+        </div>
+        <div class="slider-controls">
+            <button class="slider-btn prev" aria-label="上一张">‹</button>
+            <div class="slider-dots">
+                <span class="dot active" data-index="0"></span>
+                <span class="dot" data-index="1"></span>
+                <span class="dot" data-index="2"></span>
+            </div>
+            <button class="slider-btn next" aria-label="下一张">›</button>
+        </div>
+    </section>
+
+    <!-- Categories -->
+    <section class="categories" id="categories">
+        <div class="container">
+            <h2 class="section-title">探索系列</h2>
+            <div class="category-grid">
+                <div class="category-card">
+                    <div class="category-img" style="background-image: url('https://images.unsplash.com/photo-1586495777744-4413f21062fa?w=600&q=80')"></div>
+                    <div class="category-overlay">
+                        <h3>彩妆</h3>
+                        <p>唇膏 · 粉底 · 眼影 · 腮红</p>
+                        <a href="#" class="btn-outline">探索</a>
+                    </div>
+                </div>
+                <div class="category-card">
+                    <div class="category-img" style="background-image: url('https://images.unsplash.com/photo-1570194065650-d99fb4b38b17?w=600&q=80')"></div>
+                    <div class="category-overlay">
+                        <h3>护肤</h3>
+                        <p>精华 · 面霜 · 面膜 · 眼霜</p>
+                        <a href="#" class="btn-outline">探索</a>
+                    </div>
+                </div>
+                <div class="category-card">
+                    <div class="category-img" style="background-image: url('https://images.unsplash.com/photo-1588405748880-12d1d2a59f75?w=600&q=80')"></div>
+                    <div class="category-overlay">
+                        <h3>香水</h3>
+                        <p>女士 · 男士 · 中性 · 限定</p>
+                        <a href="#" class="btn-outline">探索</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Products -->
+    <section class="products" id="products">
+        <div class="container">
+            <h2 class="section-title">明星产品</h2>
+            <div class="product-grid">
+                <div class="product-card">
+                    <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1583241800698-e8ab01830a07?w=400&q=80')">
+                        <span class="product-badge">新品</span>
+                    </div>
+                    <div class="product-info">
+                        <h3>高定香榭唇膏</h3>
+                        <p class="product-desc">丝绒哑光质地，浓郁显色</p>
+                        <div class="product-price">¥ 320</div>
+                        <button class="btn-add-cart">加入购物车</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1631214500115-598fc2cb8ada?w=400&q=80')">
+                        <span class="product-badge">热卖</span>
+                    </div>
+                    <div class="product-info">
+                        <h3>四宫格明星散粉</h3>
+                        <p class="product-desc">柔焦定妆，轻盈透气</p>
+                        <div class="product-price">¥ 550</div>
+                        <button class="btn-add-cart">加入购物车</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1594035900107-2ef1c83907e7?w=400&q=80')"></div>
+                    <div class="product-info">
+                        <h3>心无禁忌香水</h3>
+                        <p class="product-desc">黑白橙花，神秘优雅</p>
+                        <div class="product-price">¥ 1,120</div>
+                        <button class="btn-add-cart">加入购物车</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1571781926291-c477ebfd024b?w=400&q=80')"></div>
+                    <div class="product-info">
+                        <h3>时光无痕精华</h3>
+                        <p class="product-desc">紧致修护，焕活年轻</p>
+                        <div class="product-price">¥ 890</div>
+                        <button class="btn-add-cart">加入购物车</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?w=400&q=80')">
+                        <span class="product-badge">限定</span>
+                    </div>
+                    <div class="product-info">
+                        <h3>高定眼影盘</h3>
+                        <p class="product-desc">大地色系，日常百搭</p>
+                        <div class="product-price">¥ 580</div>
+                        <button class="btn-add-cart">加入购物车</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?w=400&q=80')"></div>
+                    <div class="product-info">
+                        <h3>粉底液 SPF20</h3>
+                        <p class="product-desc">轻薄遮瑕，自然服帖</p>
+                        <div class="product-price">¥ 460</div>
+                        <button class="btn-add-cart">加入购物车</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Brand Story -->
+    <section class="story" id="story">
+        <div class="story-bg" style="background-image: url('https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?w=1920&q=80')"></div>
+        <div class="story-content">
+            <span class="story-label">MAISON GIVENCHY</span>
+            <h2>品牌故事</h2>
+            <p>1952年，Hubert de Givenchy先生在巴黎创立了纪梵希品牌。<br>
+            从高定时装到美妆艺术，纪梵希始终秉承法式优雅与前卫精神，<br>
+            为全球女性缔造独一无二的美丽体验。</p>
+            <a href="#" class="btn-primary">了解更多</a>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="newsletter">
+        <div class="container">
+            <h2>订阅纪梵希</h2>
+            <p>第一时间获取新品资讯、独家优惠与美妆灵感</p>
+            <form class="newsletter-form">
+                <input type="email" placeholder="请输入您的邮箱地址" required>
+                <button type="submit">订阅</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>产品系列</h4>
+                    <ul>
+                        <li><a href="#">彩妆</a></li>
+                        <li><a href="#">护肤</a></li>
+                        <li><a href="#">香水</a></li>
+                        <li><a href="#">新品上市</a></li>
+                        <li><a href="#">限定系列</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>客户服务</h4>
+                    <ul>
+                        <li><a href="#">配送信息</a></li>
+                        <li><a href="#">退换政策</a></li>
+                        <li><a href="#">订单查询</a></li>
+                        <li><a href="#">常见问题</a></li>
+                        <li><a href="#">联系我们</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>关于纪梵希</h4>
+                    <ul>
+                        <li><a href="#">品牌故事</a></li>
+                        <li><a href="#">门店查询</a></li>
+                        <li><a href="#">会员中心</a></li>
+                        <li><a href="#">招贤纳士</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>联系方式</h4>
+                    <p class="contact-info">贵宾服务热线</p>
+                    <p class="contact-phone">400 920 1177</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="微信">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M8.691 2.188C3.891 2.188 0 5.476 0 9.53c0 2.212 1.17 4.203 3.002 5.55a.59.59 0 01.213.665l-.39 1.48c-.019.07-.048.141-.048.213 0 .163.13.295.29.295a.326.326 0 00.167-.054l1.903-1.114a.864.864 0 01.717-.098 10.16 10.16 0 002.837.403c.276 0 .543-.027.811-.05a6.13 6.13 0 01-.253-1.736c0-3.54 3.305-6.412 7.381-6.412.262 0 .52.018.776.04C16.455 4.826 12.899 2.187 8.691 2.187zm-2.75 4.395c.558 0 1.011.453 1.011 1.011s-.453 1.011-1.011 1.011a1.012 1.012 0 010-2.022zm5.478 0c.558 0 1.011.453 1.011 1.011s-.453 1.011-1.011 1.011a1.012 1.012 0 010-2.022z"/><path d="M23.997 14.637c0-3.277-3.099-5.937-6.925-5.937-3.825 0-6.924 2.66-6.924 5.937 0 3.276 3.099 5.936 6.924 5.936.768 0 1.506-.127 2.188-.338a.682.682 0 01.565.078l1.488.87a.258.258 0 00.132.043.231.231 0 00.228-.232c0-.057-.023-.113-.038-.167l-.306-1.16a.468.468 0 01.167-.523C22.953 18.37 24 16.61 24 14.637h-.003zm-9.346-1.27a.797.797 0 110-1.594.797.797 0 010 1.594zm4.842 0a.797.797 0 110-1.594.797.797 0 010 1.594z"/></svg>
+                        </a>
+                        <a href="#" aria-label="微博">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M10.098 20.323c-3.977.391-7.414-1.406-7.672-4.02-.259-2.609 2.759-5.047 6.74-5.441 3.979-.394 7.413 1.404 7.671 4.018.259 2.6-2.759 5.049-6.737 5.439l-.002.004zM16.26 11.09c-.207-.068-.352-.113-.243-.408.235-.639.26-1.189.003-1.583-.479-.737-1.79-.698-3.293-.02 0-.002-.472.206-.351-.172.234-.763.2-1.4-.103-1.783-.685-.871-2.512.034-4.106 2.014-1.178 1.462-1.868 3.048-1.868 4.431 0 2.558 3.292 4.116 6.513 4.116 4.218 0 7.031-2.449 7.031-4.419 0-1.18-1-1.854-1.856-2.13l-.002-.002-.722-.245.003-.003z"/><path d="M20.234 5.947c-1.261-1.407-3.124-1.932-4.836-1.569a.61.61 0 00-.457.734.616.616 0 00.741.453c1.294-.271 2.688.122 3.638 1.177.949 1.054 1.19 2.488.723 3.744a.614.614 0 00.392.776.62.62 0 00.779-.389c.614-1.643.296-3.52-.98-4.925v-.002l.002.001z"/><path d="M17.837 7.806c-.59-.66-1.47-.914-2.292-.743a.435.435 0 00-.323.518.438.438 0 00.524.32c.466-.097.96.046 1.286.417.325.37.413.868.263 1.309a.436.436 0 00.277.547.44.44 0 00.55-.275c.248-.724.1-1.552-.285-2.093v-.001z"/></svg>
+                        </a>
+                        <a href="#" aria-label="小红书">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 GIVENCHY BEAUTY. All Rights Reserved.</p>
+                <div class="footer-links">
+                    <a href="#">隐私政策</a>
+                    <a href="#">使用条款</a>
+                    <a href="#">Cookie 设置</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

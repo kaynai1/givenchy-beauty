@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GIVENCHY Admin</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#f8f9fc;--card:#fff;--border:#e5e7eb;--text:#111827;--text2:#6b7280;--text3:#9ca3af;--accent:#6366f1;--accent2:#4f46e5;--success:#10b981;--danger:#ef4444;--warn:#f59e0b;--radius:14px;--shadow:0 1px 2px rgba(0,0,0,.05),0 4px 16px rgba(0,0,0,.04);--shadow-lg:0 4px 6px rgba(0,0,0,.04),0 12px 40px rgba(0,0,0,.08)}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.5;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+
+/* Sidebar */
+.sidebar{position:fixed;top:0;left:0;width:240px;height:100vh;background:#fff;border-right:1px solid var(--border);padding:20px 12px;display:flex;flex-direction:column;z-index:100}
+.sidebar-logo{font-size:12px;font-weight:700;letter-spacing:3px;text-transform:uppercase;padding:8px 16px 20px;border-bottom:1px solid var(--border);margin-bottom:16px;color:var(--accent)}
+.sidebar-nav{flex:1;overflow-y:auto}
+.nav-item{display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:10px;font-size:13px;font-weight:500;color:var(--text2);cursor:pointer;transition:all .15s;margin-bottom:2px;border:none;background:none;width:100%;text-align:left;font-family:inherit}
+.nav-item:hover{background:#f3f4f6;color:var(--text)}
+.nav-item.active{background:var(--accent);color:#fff}
+.nav-item .icon{font-size:16px;width:20px;text-align:center}
+.sidebar-foot{padding-top:12px;border-top:1px solid var(--border);display:flex;flex-direction:column;gap:4px}
+.sidebar-foot a{display:flex;align-items:center;gap:8px;padding:8px 14px;border-radius:8px;font-size:12px;color:var(--text3);transition:all .15s}
+.sidebar-foot a:hover{background:#f3f4f6;color:var(--accent)}
+
+/* Main */
+.main{margin-left:240px;min-height:100vh}
+.topbar{position:sticky;top:0;z-index:50;background:rgba(248,249,252,.8);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:14px 28px;display:flex;justify-content:space-between;align-items:center}
+.topbar-title{font-size:17px;font-weight:700}
+.topbar-right{display:flex;gap:8px;align-items:center}
+.btn{padding:9px 18px;border:none;border-radius:10px;font-family:inherit;font-size:12px;font-weight:600;cursor:pointer;transition:all .15s;display:inline-flex;align-items:center;gap:6px}
+.btn-primary{background:var(--accent);color:#fff}
+.btn-primary:hover{background:var(--accent2);transform:translateY(-1px);box-shadow:0 4px 12px rgba(99,102,241,.25)}
+.btn-ghost{background:transparent;color:var(--text2);border:1px solid var(--border)}
+.btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
+.btn-sm{padding:6px 12px;font-size:11px;border-radius:8px}
+.btn-danger-sm{background:#fef2f2;color:var(--danger);border:1px solid #fecaca;padding:6px 12px;font-size:11px;border-radius:8px;cursor:pointer;font-family:inherit;font-weight:600}
+.btn-danger-sm:hover{background:var(--danger);color:#fff;border-color:var(--danger)}
+.content{padding:28px}
+
+/* Cards */
+.card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:24px;margin-bottom:20px;box-shadow:var(--shadow)}
+.card-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
+.card-title{font-size:14px;font-weight:700;display:flex;align-items:center;gap:8px}
+.badge{font-size:10px;font-weight:700;padding:3px 10px;border-radius:20px;background:#eef2ff;color:var(--accent)}
+
+/* Form */
+.fg{margin-bottom:16px}
+.fl{display:block;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.8px;color:var(--text3);margin-bottom:6px}
+.fi{width:100%;padding:10px 14px;border:1px solid var(--border);border-radius:10px;font-family:inherit;font-size:13px;color:var(--text);background:var(--bg);transition:all .15s}
+.fi:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(99,102,241,.08);background:#fff}
+textarea.fi{min-height:80px;resize:vertical}
+.fh{font-size:11px;color:var(--text3);margin-top:4px}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.frow3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
+
+/* Product/QA items */
+.item-card{background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:16px;margin-bottom:12px;position:relative;transition:all .15s}
+.item-card:hover{border-color:var(--accent)}
+.item-card .rm{position:absolute;top:10px;right:10px;width:26px;height:26px;border-radius:50%;border:none;background:#fee2e2;color:var(--danger);font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s}
+.item-card .rm:hover{background:var(--danger);color:#fff}
+.item-grid{display:grid;grid-template-columns:70px 1fr;gap:14px;align-items:start}
+.item-thumb{width:70px;height:70px;border-radius:10px;background:#f0f0f0;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.item-thumb img{max-width:65%;max-height:65%;object-fit:contain}
+.item-fields{display:flex;flex-direction:column;gap:6px}
+.item-fields .fi{padding:7px 10px;font-size:12px}
+
+/* Tab */
+.tab{display:none}.tab.active{display:block}
+.empty{text-align:center;padding:36px;color:var(--text3)}
+.empty-icon{font-size:36px;margin-bottom:10px}
+.empty-text{font-size:13px;margin-bottom:14px}
+
+/* Toast */
+.toast{position:fixed;top:20px;right:20px;padding:12px 22px;border-radius:12px;font-size:12px;font-weight:600;color:#fff;z-index:999;opacity:0;transform:translateY(-8px);transition:all .25s;pointer-events:none;box-shadow:0 8px 24px rgba(0,0,0,.12)}
+.toast.show{opacity:1;transform:translateY(0)}
+.toast-s{background:var(--success)}.toast-e{background:var(--danger)}
+
+/* Link list */
+.link-item{display:flex;align-items:center;gap:8px;padding:8px 0;border-bottom:1px solid var(--border)}
+.link-item:last-child{border:none}
+.link-item input{flex:1;padding:7px 10px;border:1px solid var(--border);border-radius:8px;font-family:inherit;font-size:12px}
+.link-item .rm-link{width:24px;height:24px;border-radius:50%;border:none;background:#fee2e2;color:var(--danger);font-size:13px;cursor:pointer;flex-shrink:0}
+
+@media(max-width:900px){
+  .sidebar{display:none}.main{margin-left:0}
+  .content{padding:16px}.topbar{padding:12px 16px}
+  .frow,.frow3{grid-template-columns:1fr}
+  .item-grid{grid-template-columns:1fr}
+  .item-thumb{width:100%;height:80px}
+}
+</style>
+</head>
+<body>
+<div class="sidebar">
+  <div class="sidebar-logo">GIVENCHY ADMIN</div>
+  <nav class="sidebar-nav">
+    <button class="nav-item active" onclick="switchTab('banner',this)"><span class="icon">📢</span> 顶部公告</button>
+    <button class="nav-item" onclick="switchTab('hero',this)"><span class="icon">🖼️</span> Hero Banner</button>
+    <button class="nav-item" onclick="switchTab('nav',this)"><span class="icon">🧭</span> 导航菜单</button>
+    <button class="nav-item" onclick="switchTab('qa',this)"><span class="icon">⚡</span> 快速入口</button>
+    <button class="nav-item" onclick="switchTab('products',this)"><span class="icon">🛍️</span> 畅销商品</button>
+    <button class="nav-item" onclick="switchTab('latest',this)"><span class="icon">📰</span> 最新资讯</button>
+    <button class="nav-item" onclick="switchTab('maison',this)"><span class="icon">🏛️</span> 品牌故事</button>
+    <button class="nav-item" onclick="switchTab('newsletter',this)"><span class="icon">📧</span> 邮件订阅</button>
+    <button class="nav-item" onclick="switchTab('footer',this)"><span class="icon">📋</span> Footer</button>
+    <button class="nav-item" onclick="switchTab('social',this)"><span class="icon">📱</span> 社交媒体</button>
+  </nav>
+  <div class="sidebar-foot">
+    <a href="index-v3.html" target="_blank">🌐 预览网站</a>
+    <a href="#" onclick="exportData();return false">📤 导出备份</a>
+    <a href="#" onclick="importData();return false">📥 导入备份</a>
+  </div>
+</div>
+
+<div class="main">
+  <div class="topbar">
+    <div class="topbar-title" id="pageTitle">顶部公告</div>
+    <div class="topbar-right">
+      <button class="btn btn-primary" onclick="saveAll()">💾 保存</button>
+    </div>
+  </div>
+  <div class="content">
+    <!-- Top Banner -->
+    <div class="tab active" id="tab-banner">
+      <div class="card">
+        <div class="card-head"><div class="card-title">📢 顶部公告栏</div></div>
+        <div class="fg">
+          <label class="fl">公告文字</label>
+          <input class="fi" id="bannerText" placeholder="免费配送 · 会员专享礼遇 · 全国热线 400 920 1177">
+          <div class="fh">显示在网站最顶部的公告信息</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hero Banner -->
+    <div class="tab" id="tab-hero">
+      <div class="card">
+        <div class="card-head"><div class="card-title">🖼️ Hero Banner 设置</div></div>
+        <div class="frow">
+          <div class="fg"><label class="fl">标签</label><input class="fi" id="heroTag" placeholder="新品上市"></div>
+          <div class="fg"><label class="fl">按钮文字</label><input class="fi" id="heroBtn" placeholder="探索更多"></div>
+        </div>
+        <div class="fg"><label class="fl">标题</label><input class="fi" id="heroTitle" placeholder="L'INTERDIT 心无禁忌"></div>
+        <div class="fg"><label class="fl">描述</label><textarea class="fi" id="heroDesc" placeholder="黑白橙花交织，释放独特迷人魅力"></textarea></div>
+        <div class="fg"><label class="fl">背景图片URL</label><input class="fi" id="heroImg" placeholder="https://..."><div class="fh">粘贴图片链接</div><div id="heroPreview" style="margin-top:10px"></div></div>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="tab" id="tab-nav">
+      <div class="card">
+        <div class="card-head"><div class="card-title">🧭 导航菜单</div><span class="badge" id="navCount">5 项</span></div>
+        <div id="navList"></div>
+        <div style="text-align:center;padding:16px"><button class="btn btn-ghost btn-sm" onclick="addNav()">+ 添加菜单项</button></div>
+      </div>
+    </div>
+
+    <!-- Quick Access -->
+    <div class="tab" id="tab-qa">
+      <div class="card">
+        <div class="card-head"><div class="card-title">⚡ 快速入口</div><span class="badge" id="qaCount">6 项</span></div>
+        <div id="qaList"></div>
+        <div style="text-align:center;padding:16px"><button class="btn btn-ghost btn-sm" onclick="addQA()">+ 添加入口</button></div>
+      </div>
+    </div>
+
+    <!-- Products -->
+    <div class="tab" id="tab-products">
+      <div class="card">
+        <div class="card-head"><div class="card-title">🛍️ 畅销商品</div><span class="badge" id="prodCount">6 个</span></div>
+        <div id="productsList"></div>
+        <div style="text-align:center;padding:16px"><button class="btn btn-ghost btn-sm" onclick="addProduct()">+ 添加产品</button></div>
+      </div>
+    </div>
+
+    <!-- Latest News -->
+    <div class="tab" id="tab-latest">
+      <div class="card">
+        <div class="card-head"><div class="card-title">📰 最新资讯</div></div>
+        <div class="fg"><label class="fl">板块标题</label><input class="fi" id="latestTitle" placeholder="最新资讯"></div>
+        <div id="latestList"></div>
+        <div style="text-align:center;padding:16px"><button class="btn btn-ghost btn-sm" onclick="addLatest()">+ 添加资讯</button></div>
+      </div>
+    </div>
+
+    <!-- Maison / Brand Story -->
+    <div class="tab" id="tab-maison">
+      <div class="card">
+        <div class="card-head"><div class="card-title">🏛️ 品牌故事（黑底板块）</div></div>
+        <div class="frow">
+          <div class="fg"><label class="fl">小标题</label><input class="fi" id="maisonSub" placeholder="MAISON GIVENCHY"></div>
+          <div class="fg"><label class="fl">大标题</label><input class="fi" id="maisonTitle" placeholder="品牌世界"></div>
+        </div>
+        <div id="maisonList"></div>
+        <div style="text-align:center;padding:16px"><button class="btn btn-ghost btn-sm" onclick="addMaison()">+ 添加卡片</button></div>
+      </div>
+    </div>
+
+    <!-- Newsletter -->
+    <div class="tab" id="tab-newsletter">
+      <div class="card">
+        <div class="card-head"><div class="card-title">📧 邮件订阅</div></div>
+        <div class="fg"><label class="fl">标题</label><input class="fi" id="nlTitle" placeholder="订阅纪梵希"></div>
+        <div class="fg"><label class="fl">描述</label><input class="fi" id="nlDesc" placeholder="第一时间获取新品资讯与美妆灵感"></div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="tab" id="tab-footer">
+      <div class="card">
+        <div class="card-head"><div class="card-title">📋 Footer 链接</div></div>
+        <div class="frow">
+          <div class="fg"><label class="fl">客服电话</label><input class="fi" id="footerPhone" placeholder="400 920 1177"></div>
+          <div class="fg"><label class="fl">版权信息</label><input class="fi" id="footerCopy" placeholder="© 2026 GIVENCHY BEAUTY"></div>
+        </div>
+        <div style="margin-top:20px">
+          <div style="font-size:12px;font-weight:700;margin-bottom:12px">产品系列</div>
+          <div id="footerProducts"></div>
+          <button class="btn btn-ghost btn-sm" onclick="addFooterLink('products')" style="margin:8px 0">+ 添加</button>
+        </div>
+        <div style="margin-top:16px">
+          <div style="font-size:12px;font-weight:700;margin-bottom:12px">客户服务</div>
+          <div id="footerService"></div>
+          <button class="btn btn-ghost btn-sm" onclick="addFooterLink('service')" style="margin:8px 0">+ 添加</button>
+        </div>
+        <div style="margin-top:16px">
+          <div style="font-size:12px;font-weight:700;margin-bottom:12px">关于纪梵希</div>
+          <div id="footerAbout"></div>
+          <button class="btn btn-ghost btn-sm" onclick="addFooterLink('about')" style="margin:8px 0">+ 添加</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Social Media -->
+    <div class="tab" id="tab-social">
+      <div class="card">
+        <div class="card-head"><div class="card-title">📱 社交媒体链接</div><span class="badge" id="socialCount">3 个</span></div>
+        <div id="socialList"></div>
+        <div style="text-align:center;padding:16px"><button class="btn btn-ghost btn-sm" onclick="addSocial()">+ 添加链接</button></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+<input type="file" id="importFile" style="display:none" accept=".json">
+
+<script>
+var D={
+  bannerText:"免费配送 · 会员专享礼遇 · 全国热线 400 920 1177",
+  heroTitle:"L'INTERDIT 心无禁忌",heroTag:"新品上市",heroDesc:"黑白橙花交织\n释放独特迷人魅力",heroBtn:"探索更多",
+  heroImg:"https://www.givenchybeauty.cn/on/demandware.static/-/Library-Sites-GivenchySharedLibrary/default/dwbe9f0c17/LATEST/2024/FRAG/LCP_Coeur-Fou_Latest_Desktop.jpg",
+  navItems:[{label:"全部商品",href:"#"},{label:"香水",href:"#"},{label:"彩妆",href:"#"},{label:"护肤",href:"#"},{label:"新品上市",href:"#"}],
+  qa:[
+    {label:"心无禁忌",img:"https://www.givenchybeauty.cn/on/demandware.static/-/Library-Sites-GivenchySharedLibrary/default/dw961fe95f/QuickAccess/2025/FRAG/QUICK_ACCESS_Lenfant_terrible_324x434_180kb.jpg"},
+    {label:"禁忌之巅",img:"https://www.givenchybeauty.cn/on/demandware.static/-/Library-Sites-GivenchySharedLibrary/default/dw0c2f4af2/QuickAccess/2025/FRAG/QA_INTERDIT_ABSOLU.jpg"},
+    {label:"高定唇妆",img:"https://www.givenchybeauty.cn/on/demandware.static/-/Library-Sites-GivenchySharedLibrary/default/dw9c2119e8/QuickAccess/2025/MAKEUP/GIV_LRI_BAUME_COUTURE_QA.jpg"},
+    {label:"护肤系列",img:"https://www.givenchybeauty.cn/on/demandware.static/-/Library-Sites-GivenchySharedLibrary/default/dw88358bd2/QuickAccess/2024/SKINCARE/10_QA_LSN_COLLECTION.jpg"},
+    {label:"丝绒唇膏",img:"https://www.givenchybeauty.cn/on/demandware.static/-/Library-Sites-GivenchySharedLibrary/default/dw70601d46/QuickAccess/2024/MUP/LRI-Satin_Quick-Access_KV_Desktop_Mobile.jpeg"},
+    {label:"蕾丝面膜",img:"https://www.givenchybeauty.cn/on/demandware.static/-/Library-Sites-GivenchySharedLibrary/default/dw6e209564/LATEST/2024/SKINCARE/LSN_Lace-Face-Mask_Latest_Desktop.jpg"}
+  ],
+  products:[
+    {name:"L'INTERDIT 心无禁忌",sub:"女士淡香精 50ML",price:"¥1,120",img:"https://www.givenchybeauty.cn/dw/image/v2/BBZW_PRD/on/demandware.static/-/Sites-givenchy-beauty-master/default/dw67a86ab8/images/P069001/3274872372146_P069001_L_INTERDIT-EDP-50ML_0.png"},
+    {name:"INTERDIT ROUGE",sub:"心无禁忌迷红香水",price:"¥1,280",img:"https://www.givenchybeauty.cn/dw/image/v2/BBZW_PRD/on/demandware.static/-/Sites-givenchy-beauty-master/default/dwbaa40abc/images/P069262/interdit_rouge.png"},
+    {name:"GENTLEMEN SOCIETY",sub:"绅士浓情淡香精 50ML",price:"¥980",img:"https://www.givenchybeauty.cn/dw/image/v2/BBZW_PRD/on/demandware.static/-/Sites-givenchy-beauty-master/default/dw4cf4d211/images/P011050/3274872399013_P011050_GG_EDPB_79_6_50ML_a_0.png"},
+    {name:"PRISME LIBRE",sub:"暗皮救星粉底液 30ML",price:"¥520",img:"https://www.givenchybeauty.cn/dw/image/v2/BBZW_PRD/on/demandware.static/-/Sites-givenchy-beauty-master/default/dw17f632f4/images/P090721/3274872413627_P090721_PL-FDT-30ML-1-N80_0.png"},
+    {name:"TEINT COUTURE",sub:"明星柔雾粉底液 30ML",price:"¥480",img:"https://www.givenchybeauty.cn/dw/image/v2/BBZW_PRD/on/demandware.static/-/Sites-givenchy-beauty-master/default/dwf5d5fd77/images/P090401/3274872430921_P090401_PL-FDT-MATTE-30ML-1-N80_0.png"},
+    {name:"LE ROUGE INTERDIT",sub:"高定禁忌唇膏 3.4G",price:"¥320",img:"https://www.givenchybeauty.cn/dw/image/v2/BBZW_PRD/on/demandware.static/-/Sites-givenchy-beauty-master/default/dwade722fe/images/P084773/3274872442924_P084773_LE-ROUGE-INTE-INT-SILK-3,4G-N326_0.png"}
+  ],
+  latestTitle:"最新资讯",
+  latest:[
+    {title:"心无禁忌 · 全新香氛",img:"https://www.givenchybeauty.cn/on/demandware.static/-/Library-Sites-GivenchySharedLibrary/default/dwbe9f0c17/LATEST/2024/FRAG/LCP_Coeur-Fou_Latest_Desktop.jpg"},
+    {title:"高定蕾丝面膜",img:"https://www.givenchybeauty.cn/on/demandware.static/-/Library-Sites-GivenchySharedLibrary/default/dw6e209564/LATEST/2024/SKINCARE/LSN_Lace-Face-Mask_Latest_Desktop.jpg"}
+  ],
+  maisonSub:"MAISON GIVENCHY",maisonTitle:"品牌世界",
+  maison:[
+    {title:"香水系列",sub:"探索全部香氛",img:"https://www.givenchybeauty.cn/on/demandware.static/-/Library-Sites-GivenchySharedLibrary/default/dw0c2f4af2/QuickAccess/2025/FRAG/QA_INTERDIT_ABSOLU.jpg"},
+    {title:"品牌故事",sub:"法式优雅传承",img:"https://www.givenchybeauty.cn/dw/image/v2/BBZW_PRD/on/demandware.static/-/Sites-givenchy-beauty-master/default/dw06dab2c9/images/P069001/INT-EDP_PDM_INGREDIENTS_800x800_3.jpg"},
+    {title:"限定系列",sub:"探索限量新品",img:"https://www.givenchybeauty.cn/dw/image/v2/BBZW_PRD/on/demandware.static/-/Sites-givenchy-beauty-master/default/dw3c2c1b86/images/P069262/INTERDIT-EDPRU_PDM_NM_INGREDIENTS+PACK_EDPR_3.jpg"}
+  ],
+  nlTitle:"订阅纪梵希",nlDesc:"第一时间获取新品资讯与美妆灵感",
+  footerPhone:"400 920 1177",footerCopy:"© 2026 GIVENCHY BEAUTY. All Rights Reserved.",
+  footerLinks:{products:[{label:"彩妆",href:"#"},{label:"护肤",href:"#"},{label:"香水",href:"#"}],service:[{label:"配送信息",href:"#"},{label:"退换政策",href:"#"},{label:"常见问题",href:"#"}],about:[{label:"品牌故事",href:"#"},{label:"门店查询",href:"#"}]},
+  social:[{name:"微信",url:"#"},{name:"微博",url:"#"},{name:"小红书",url:"#"}]
+};
+var data=JSON.parse(localStorage.getItem('gData')||'null')||JSON.parse(JSON.stringify(D));
+function esc(s){return(s||'').replace(/"/g,'&quot;').replace(/</g,'&lt;')}
+function switchTab(t,el){
+  document.querySelectorAll('.tab').forEach(function(x){x.classList.remove('active')});
+  document.querySelectorAll('.nav-item').forEach(function(x){x.classList.remove('active')});
+  document.getElementById('tab-'+t).classList.add('active');
+  el.classList.add('active');
+  var m={banner:'顶部公告',hero:'Hero Banner',nav:'导航菜单',qa:'快速入口',products:'畅销商品',latest:'最新资讯',maison:'品牌故事',newsletter:'邮件订阅',footer:'Footer',social:'社交媒体'};
+  document.getElementById('pageTitle').textContent=m[t]||t;
+}
+function load(){
+  document.getElementById('bannerText').value=data.bannerText||'';
+  document.getElementById('heroTag').value=data.heroTag||'';
+  document.getElementById('heroTitle').value=data.heroTitle||'';
+  document.getElementById('heroDesc').value=data.heroDesc||'';
+  document.getElementById('heroBtn').value=data.heroBtn||'';
+  document.getElementById('heroImg').value=data.heroImg||'';
+  document.getElementById('latestTitle').value=data.latestTitle||'';
+  document.getElementById('maisonSub').value=data.maisonSub||'';
+  document.getElementById('maisonTitle').value=data.maisonTitle||'';
+  document.getElementById('nlTitle').value=data.nlTitle||'';
+  document.getElementById('nlDesc').value=data.nlDesc||'';
+  document.getElementById('footerPhone').value=data.footerPhone||'';
+  document.getElementById('footerCopy').value=data.footerCopy||'';
+  updPreview();rNav();rQA();rProd();rLatest();rMaison();rFooter();rSocial();
+}
+function updPreview(){var u=document.getElementById('heroImg').value;document.getElementById('heroPreview').innerHTML=u?'<img src="'+u+'" style="max-width:280px;border-radius:10px;border:1px solid var(--border)" onerror="this.style.display=\'none\'">':'';}
+document.getElementById('heroImg').addEventListener('input',updPreview);
+
+function rNav(){
+  document.getElementById('navCount').textContent=data.navItems.length+' 项';
+  var h='';for(var i=0;i<data.navItems.length;i++){var n=data.navItems[i];
+    h+='<div class="link-item"><input value="'+esc(n.label)+'" placeholder="菜单名" onchange="data.navItems['+i+'].label=this.value"><input value="'+esc(n.href)+'" placeholder="链接" onchange="data.navItems['+i+'].href=this.value"><button class="rm-link" onclick="rmNav('+i+')">×</button></div>';}
+  document.getElementById('navList').innerHTML=h;
+}
+function addNav(){data.navItems.push({label:'',href:'#'});rNav();}
+function rmNav(i){data.navItems.splice(i,1);rNav();}
+
+function rQA(){
+  document.getElementById('qaCount').textContent=data.qa.length+' 项';
+  var h='';for(var i=0;i<data.qa.length;i++){var q=data.qa[i];
+    h+='<div class="item-card"><button class="rm" onclick="rmQA('+i+')">×</button><div class="item-grid"><div class="item-thumb">'+(q.img?'<img src="'+q.img+'">':'⚡')+'</div><div class="item-fields"><input class="fi" value="'+esc(q.label)+'" placeholder="名称" onchange="data.qa['+i+'].label=this.value"><input class="fi" value="'+esc(q.img)+'" placeholder="图片URL" onchange="data.qa['+i+'].img=this.value;rQA()"></div></div></div>';}
+  document.getElementById('qaList').innerHTML=h||'<div class="empty"><div class="empty-icon">⚡</div><div class="empty-text">暂无</div></div>';
+}
+function addQA(){data.qa.push({label:'',img:''});rQA();}
+function rmQA(i){data.qa.splice(i,1);rQA();}
+
+function rProd(){
+  document.getElementById('prodCount').textContent=data.products.length+' 个';
+  var h='';for(var i=0;i<data.products.length;i++){var p=data.products[i];
+    h+='<div class="item-card"><button class="rm" onclick="rmProd('+i+')">×</button><div class="item-grid"><div class="item-thumb">'+(p.img?'<img src="'+p.img+'">':'🛍')+'</div><div class="item-fields"><input class="fi" value="'+esc(p.name)+'" placeholder="名称" onchange="data.products['+i+'].name=this.value"><input class="fi" value="'+esc(p.sub)+'" placeholder="描述" onchange="data.products['+i+'].sub=this.value"><input class="fi" value="'+esc(p.price)+'" placeholder="价格" onchange="data.products['+i+'].price=this.value"><input class="fi" value="'+esc(p.img)+'" placeholder="图片URL" onchange="data.products['+i+'].img=this.value;rProd()"></div></div></div>';}
+  document.getElementById('productsList').innerHTML=h||'<div class="empty"><div class="empty-icon">🛍</div><div class="empty-text">暂无</div></div>';
+}
+function addProduct(){data.products.push({name:'',sub:'',price:'',img:''});rProd();}
+function rmProd(i){data.products.splice(i,1);rProd();}
+
+function rLatest(){
+  var h='';for(var i=0;i<data.latest.length;i++){var l=data.latest[i];
+    h+='<div class="item-card"><button class="rm" onclick="rmLatest('+i+')">×</button><div class="item-grid"><div class="item-thumb">'+(l.img?'<img src="'+l.img+'">':'📰')+'</div><div class="item-fields"><input class="fi" value="'+esc(l.title)+'" placeholder="标题" onchange="data.latest['+i+'].title=this.value"><input class="fi" value="'+esc(l.img)+'" placeholder="图片URL" onchange="data.latest['+i+'].img=this.value;rLatest()"></div></div></div>';}
+  document.getElementById('latestList').innerHTML=h||'<div class="empty"><div class="empty-icon">📰</div><div class="empty-text">暂无</div></div>';
+}
+function addLatest(){data.latest.push({title:'',img:''});rLatest();}
+function rmLatest(i){data.latest.splice(i,1);rLatest();}
+
+function rMaison(){
+  var h='';for(var i=0;i<data.maison.length;i++){var m=data.maison[i];
+    h+='<div class="item-card"><button class="rm" onclick="rmMaison('+i+')">×</button><div class="item-grid"><div class="item-thumb">'+(m.img?'<img src="'+m.img+'">':'🏛')+'</div><div class="item-fields"><input class="fi" value="'+esc(m.title)+'" placeholder="标题" onchange="data.maison['+i+'].title=this.value"><input class="fi" value="'+esc(m.sub)+'" placeholder="描述" onchange="data.maison['+i+'].sub=this.value"><input class="fi" value="'+esc(m.img)+'" placeholder="图片URL" onchange="data.maison['+i+'].img=this.value;rMaison()"></div></div></div>';}
+  document.getElementById('maisonList').innerHTML=h||'<div class="empty"><div class="empty-icon">🏛</div><div class="empty-text">暂无</div></div>';
+}
+function addMaison(){data.maison.push({title:'',sub:'',img:''});rMaison();}
+function rmMaison(i){data.maison.splice(i,1);rMaison();}
+
+function rFooter(){
+  ['products','service','about'].forEach(function(k){
+    var el=document.getElementById('footer'+k.charAt(0).toUpperCase()+k.slice(1));
+    if(!data.footerLinks)data.footerLinks={};
+    if(!data.footerLinks[k])data.footerLinks[k]=[];
+    var h='';for(var i=0;i<data.footerLinks[k].length;i++){var l=data.footerLinks[k][i];
+      h+='<div class="link-item"><input value="'+esc(l.label)+'" placeholder="名称" onchange="data.footerLinks.'+k+'['+i+'].label=this.value"><input value="'+esc(l.href)+'" placeholder="链接" onchange="data.footerLinks.'+k+'['+i+'].href=this.value"><button class="rm-link" onclick="rmFooterLink(\''+k+'\','+i+')">×</button></div>';}
+    el.innerHTML=h;
+  });
+}
+function addFooterLink(k){if(!data.footerLinks)data.footerLinks={};if(!data.footerLinks[k])data.footerLinks[k]=[];data.footerLinks[k].push({label:'',href:'#'});rFooter();}
+function rmFooterLink(k,i){data.footerLinks[k].splice(i,1);rFooter();}
+
+function rSocial(){
+  document.getElementById('socialCount').textContent=data.social.length+' 个';
+  var h='';for(var i=0;i<data.social.length;i++){var s=data.social[i];
+    h+='<div class="link-item"><input value="'+esc(s.name)+'" placeholder="平台名" onchange="data.social['+i+'].name=this.value"><input value="'+esc(s.url)+'" placeholder="链接" onchange="data.social['+i+'].url=this.value"><button class="rm-link" onclick="rmSocial('+i+')">×</button></div>';}
+  document.getElementById('socialList').innerHTML=h||'<div class="empty"><div class="empty-icon">📱</div><div class="empty-text">暂无</div></div>';
+}
+function addSocial(){data.social.push({name:'',url:'#'});rSocial();}
+function rmSocial(i){data.social.splice(i,1);rSocial();}
+
+function saveAll(){
+  data.bannerText=document.getElementById('bannerText').value;
+  data.heroTag=document.getElementById('heroTag').value;
+  data.heroTitle=document.getElementById('heroTitle').value;
+  data.heroDesc=document.getElementById('heroDesc').value;
+  data.heroBtn=document.getElementById('heroBtn').value;
+  data.heroImg=document.getElementById('heroImg').value;
+  data.latestTitle=document.getElementById('latestTitle').value;
+  data.maisonSub=document.getElementById('maisonSub').value;
+  data.maisonTitle=document.getElementById('maisonTitle').value;
+  data.nlTitle=document.getElementById('nlTitle').value;
+  data.nlDesc=document.getElementById('nlDesc').value;
+  data.footerPhone=document.getElementById('footerPhone').value;
+  data.footerCopy=document.getElementById('footerCopy').value;
+  localStorage.setItem('gData',JSON.stringify(data));
+  toast('✅ 已保存','s');
+}
+function exportData(){saveAll();var b=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});var a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='givenchy-data.json';a.click();toast('📤 已导出','s');}
+function importData(){document.getElementById('importFile').click();}
+document.getElementById('importFile').addEventListener('change',function(e){var f=e.target.files[0];if(!f)return;var r=new FileReader();r.onload=function(ev){try{data=JSON.parse(ev.target.result);localStorage.setItem('gData',JSON.stringify(data));load();toast('📥 导入成功','s');}catch(e){toast('❌ 格式错误','e');}};r.readAsText(f);});
+function toast(m,t){var el=document.getElementById('toast');el.textContent=m;el.className='toast toast-'+t+' show';setTimeout(function(){el.classList.remove('show');},2500);}
+load();
+</script>
+</body>
+</html>

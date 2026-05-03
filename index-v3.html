@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GIVENCHY BEAUTY ∷ 纪梵希美妆官方旗舰店</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&family=Maven+Pro:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{--black:#000;--white:#fff;--border:#cecece;--gray:#757575;--bg:#f6f6f6;--max-w:1122px}
+html{scroll-behavior:smooth}
+body{font-family:'Maven Pro',sans-serif;font-size:14px;color:var(--black);line-height:1.5;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer}
+img{max-width:100%;display:block}
+ul{list-style:none}
+
+/* ========= HEADER ========= */
+.giv-header{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--white);border-bottom:1px solid var(--border);transition:box-shadow .3s}
+.giv-header.scrolled{box-shadow:0 2px 20px rgba(0,0,0,.06)}
+.giv-header-container{max-width:var(--max-w);margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:16px 20px;height:64px}
+.giv-header-left{display:flex;align-items:center;gap:16px}
+.giv-header-center{position:absolute;left:50%;transform:translateX(-50%)}
+.giv-header-logo{height:20px;display:block}
+.giv-header-right{display:flex;align-items:center;gap:20px}
+.giv-header-icon{width:18px;height:18px;cursor:pointer;opacity:.6;transition:opacity .3s}
+.giv-header-icon:hover{opacity:1}
+.menu-btn{display:flex;flex-direction:column;gap:4px;cursor:pointer;border:none;background:none;padding:4px}
+.menu-btn span{width:18px;height:1.5px;background:var(--black);transition:.3s}
+/* Desktop Nav below header */
+.giv-nav{display:none}
+@media(min-width:800px){
+  .giv-nav{display:block;border-bottom:1px solid var(--border);background:var(--white)}
+  .giv-nav-inner{max-width:var(--max-w);margin:0 auto;display:flex;justify-content:center;gap:40px;padding:0 20px}
+  .giv-nav a{font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:500;padding:14px 0;display:block;position:relative}
+  .giv-nav a:after{content:'';position:absolute;bottom:0;left:0;width:0;height:3px;background:var(--black);transition:width .3s}
+  .giv-nav a:hover:after{width:100%}
+  .menu-btn{display:none}
+  .giv-header-container{height:auto;padding:20px 20px 14px}
+}
+
+/* ========= HERO BANNER ========= */
+.hero{position:relative;width:100%;height:auto;aspect-ratio:16/7;min-height:300px;overflow:hidden}
+@media(min-width:800px){.hero{aspect-ratio:16/6}}
+.hero-img{width:100%;height:100%;object-fit:cover;object-position:center}
+.hero-content{position:absolute;bottom:60px;left:40px;z-index:2;max-width:400px}
+@media(max-width:800px){.hero-content{left:20px;bottom:40px;max-width:260px}}
+.hero-tag{display:block;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--white);margin-bottom:8px;font-weight:500}
+.hero-title{font-family:'Roboto Condensed',sans-serif;font-weight:700;font-size:clamp(24px,4vw,40px);text-transform:uppercase;letter-spacing:4px;color:var(--white);line-height:1.1;margin-bottom:12px}
+.hero-desc{font-size:13px;color:var(--white);line-height:1.6;letter-spacing:.5px;margin-bottom:20px;opacity:.9}
+.btn-primary{display:inline-block;padding:11px 32px;background:var(--black);color:var(--white);border:1px solid var(--black);font-family:'Roboto Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;transition:all .3s}
+.btn-primary:hover{background:var(--white);color:var(--black)}
+
+/* ========= QUICK ACCESS ========= */
+.quick-access{border-bottom:1px solid var(--border);padding:0}
+.quick-access-scroll{max-width:var(--max-w);margin:0 auto;display:flex;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none;padding:24px 20px;gap:0}
+.quick-access-scroll::-webkit-scrollbar{display:none}
+.qa-item{flex:0 0 calc(100%/6);min-width:100px;text-align:center;padding:0 8px}
+@media(max-width:800px){.qa-item{flex:0 0 100px;min-width:90px;padding:0 6px}}
+.qa-img{width:100%;aspect-ratio:3/4;object-fit:cover;display:block;margin:0 auto 8px}
+.qa-label{font-family:'Maven Pro',sans-serif;font-size:11px;font-weight:400;text-transform:none;letter-spacing:normal;color:var(--black)}
+
+/* ========= FEATURED PRODUCTS ========= */
+.featured{border-bottom:1px solid var(--border);padding:60px 0}
+.featured-title{font-family:'Roboto Condensed',sans-serif;font-weight:700;font-size:15px;letter-spacing:2px;text-transform:uppercase;text-align:center;margin-bottom:36px}
+.products-scroll{display:flex;overflow-x:auto;scrollbar-width:none;gap:0;padding:0 20px;-ms-overflow-style:none}
+.products-scroll::-webkit-scrollbar{display:none}
+.prod-card{flex:0 0 200px;padding:0 15px;text-align:center}
+@media(min-width:800px){.prod-card{flex:0 0 calc(var(--max-w)/6 - 2px)}}
+.prod-img-wrap{background:var(--bg);padding:16px;margin-bottom:12px;aspect-ratio:1;display:flex;align-items:center;justify-content:center}
+.prod-img-wrap img{max-height:75%;max-width:75%;object-fit:contain}
+.prod-name{font-family:'Roboto Condensed',sans-serif;font-weight:700;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;line-height:1.3;margin-bottom:4px}
+.prod-sub{font-size:11px;color:var(--gray);letter-spacing:.3px;margin-bottom:4px}
+.prod-price{font-family:'Roboto Condensed',sans-serif;font-weight:700;font-size:13px;letter-spacing:.5px}
+
+/* ========= LATEST / CONTENT TILES ========= */
+.content-tiles{max-width:var(--max-w);margin:0 auto;padding:60px 20px}
+.content-tiles-title{font-family:'Roboto Condensed',sans-serif;font-weight:700;font-size:15px;letter-spacing:2px;text-transform:uppercase;text-align:center;margin-bottom:36px}
+.content-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:30px}
+@media(max-width:800px){.content-grid{grid-template-columns:1fr;gap:20px}}
+.content-card{position:relative;overflow:hidden;cursor:pointer}
+.content-card-img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;transition:transform .6s}
+.content-card:hover .content-card-img{transform:scale(1.03)}
+.content-card-title{font-family:'Roboto Condensed',sans-serif;font-weight:700;font-size:13px;letter-spacing:2px;text-transform:uppercase;text-align:center;margin-top:12px}
+
+/* ========= MAISON SECTION (BLACK BG) ========= */
+.maison{background:var(--black);padding:60px 0;margin:60px 0 0}
+.maison-inner{max-width:var(--max-w);margin:0 auto;padding:0 20px}
+.maison-header{text-align:center;margin-bottom:36px}
+.maison-sub{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.6);margin-bottom:6px}
+.maison-title{font-family:'Roboto Condensed',sans-serif;font-weight:700;font-size:15px;letter-spacing:2px;text-transform:uppercase;color:var(--white)}
+.maison-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:30px}
+@media(max-width:800px){.maison-grid{grid-template-columns:1fr;gap:20px}}
+.maison-card{text-align:center}
+.maison-card-img{width:100%;aspect-ratio:3/4;object-fit:cover;display:block;margin-bottom:12px}
+.maison-card-title{font-family:'Roboto Condensed',sans-serif;font-weight:700;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:var(--white)}
+.maison-card-sub{font-size:12px;color:rgba(255,255,255,.6);margin-top:4px}
+
+/* ========= NEWSLETTER ========= */
+.newsletter{padding:60px 20px;text-align:center;border-top:1px solid var(--border)}
+.newsletter h2{font-family:'Roboto Condensed',sans-serif;font-weight:700;font-size:16px;letter-spacing:3px;text-transform:uppercase;margin-bottom:10px}
+.newsletter p{font-size:12px;color:var(--gray);letter-spacing:.5px;margin-bottom:24px}
+.nl-form{display:flex;max-width:440px;margin:0 auto;border:1px solid var(--black)}
+.nl-form input{flex:1;padding:12px 16px;border:none;outline:none;font-family:'Maven Pro';font-size:13px;background:transparent}
+.nl-form button{padding:12px 24px;background:var(--black);color:var(--white);border:none;font-family:'Roboto Condensed';font-size:10px;letter-spacing:2px;text-transform:uppercase;font-weight:700;cursor:pointer;transition:background .3s}
+.nl-form button:hover{background:var(--gray)}
+
+/* ========= FOOTER ========= */
+.footer{background:var(--black);color:var(--white);padding:60px 0 20px;margin-top:0}
+.footer-grid{max-width:var(--max-w);margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:30px;padding:0 20px 40px}
+@media(max-width:800px){.footer-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:480px){.footer-grid{grid-template-columns:1fr}}
+.footer-col h4{font-size:10px;letter-spacing:2px;text-transform:uppercase;font-weight:700;opacity:.6;margin-bottom:18px}
+.footer-col li{margin-bottom:10px}
+.footer-col a{font-size:12px;opacity:.45;transition:opacity .3s}
+.footer-col a:hover{opacity:1}
+.footer-phone{font-family:'Roboto Condensed';font-size:18px;letter-spacing:2px;margin-bottom:16px}
+.footer-social{display:flex;gap:14px}
+.footer-social svg{opacity:.4;transition:opacity .3s}
+.footer-social:hover svg{opacity:1}
+.footer-bottom{max-width:var(--max-w);margin:0 auto;border-top:1px solid rgba(255,255,255,.1);padding-top:16px;display:flex;justify-content:space-between;align-items:center;padding-left:20px;padding-right:20px;flex-wrap:wrap;gap:10px}
+.footer-copy{font-size:10px;opacity:.25;letter-spacing:1px}
+.footer-links{display:flex;gap:20px}
+.footer-links a{font-size:10px;opacity:.25;letter-spacing:1px}
+.footer-links a:hover{opacity:.5}
+
+/* ========= RESPONSIVE ========= */
+@media(max-width:800px){
+  .giv-header-container{height:56px;padding:12px 16px}
+  .giv-header-logo{height:16px}
+  .content-tiles{padding:40px 16px}
+  .maison{padding:40px 0;margin-top:40px}
+  .featured{padding:40px 0}
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="giv-header" id="header">
+  <div class="giv-header-container">
+    <div class="giv-header-left">
+      <button class="menu-btn"><span></span><span></span><span></span></button>
+    </div>
+    <div class="giv-header-center">
+      <a href="#"><img src="https://www.givenchybeauty.cn/on/demandware.static/Sites-givenchy-beauty-cn-Site/-/default/dw69c44312/images/logo-givenchy.jpg" alt="GIVENCHY" class="giv-header-logo"></a>
+    </div>
+    <div class="giv-header-right">
+      <svg class="giv-header-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <svg class="giv-header-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      <svg class="giv-header-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+    </div>
+  </div>
+</header>
+
+<!-- NAV (Desktop) -->
+<nav class="giv-nav" style="margin-top:64px">
+  <div class="giv-nav-inner">
+    <a href="#">全部商品</a>
+    <a href="#">香水</a>
+    <a href="#">彩妆</a>
+    <a href="#">护肤</a>
+    <a href="#">新品上市</a>
+  </div>
+</nav>
+
+<!-- HERO BANNER -->
+<section class="hero">
+  <img src="https://www.givenchybeauty.cn/on/demandware.static/-/Library-Sites-GivenchySharedLibrary/default/dwbe9f0c17/LATEST/2024/FRAG/LCP_Coeur-Fou_Latest_Desktop.jpg" alt="L'INTERDIT" class="hero-img">
+  <div class="hero-content">
+    <span class="hero-tag">新品上市</span>
+    <h1 class="hero-title">L'INTERDIT<br>心无禁忌</h1>
+    <p class="hero-desc">黑白橙花交织<br>释放独特迷人魅力</p>
+    <a href="#" class="btn-primary">探索更多</a>
+  </div>
+</section>
+
+<!-- QUICK ACCESS -->
+<section class="quick-access">
+  <div class="quick-access-scroll">
+    <a href="#" class="qa-item"><img src="https://www.givenchybeauty.cn/on/demandware.static/-/Library-Sites-GivenchySharedLibrary/default/dw961fe95f/QuickAccess/2025/FRAG/QUICK_ACCESS_Lenfant_terrible_324x434_180kb.jpg" class="qa-img"><span class="qa-label">心无禁忌</span></a>
+    <a href="#" class="qa-item"><img src="https://www.givenchybeauty.cn/on/demandware.static/-/Library-Sites-GivenchySharedLibrary/default/dw0c2f4af2/QuickAccess/2025/FRAG/QA_INTERDIT_ABSOLU.jpg" class="qa-img"><span class="qa-label">禁忌之巅</span></a>
+    <a href="#" class="qa-item"><img src="https://www.givenchybeauty.cn/on/demandware.static/-/Library-Sites-GivenchySharedLibrary/default/dw9c2119e8/QuickAccess/2025/MAKEUP/GIV_LRI_BAUME_COUTURE_QA.jpg" class="qa-img"><span class="qa-label">高定唇妆</span></a>
+    <a href="#" class="qa-item"><img src="https://www.givenchybeauty.cn/on/demandware.static/-/Library-Sites-GivenchySharedLibrary/default/dw88358bd2/QuickAccess/2024/SKINCARE/10_QA_LSN_COLLECTION.jpg" class="qa-img"><span class="qa-label">护肤系列</span></a>
+    <a href="#" class="qa-item"><img src="https://www.givenchybeauty.cn/on/demandware.static/-/Library-Sites-GivenchySharedLibrary/default/dw70601d46/QuickAccess/2024/MUP/LRI-Satin_Quick-Access_KV_Desktop_Mobile.jpeg" class="qa-img"><span class="qa-label">丝绒唇膏</span></a>
+    <a href="#" class="qa-item"><img src="https://www.givenchybeauty.cn/on/demandware.static/-/Library-Sites-GivenchySharedLibrary/default/dw6e209564/LATEST/2024/SKINCARE/LSN_Lace-Face-Mask_Latest_Desktop.jpg" class="qa-img"><span class="qa-label">蕾丝面膜</span></a>
+  </div>
+</section>
+
+<!-- FEATURED PRODUCTS -->
+<section class="featured">
+  <h2 class="featured-title">畅销商品</h2>
+  <div class="products-scroll">
+    <div class="prod-card">
+      <div class="prod-img-wrap"><img src="https://www.givenchybeauty.cn/dw/image/v2/BBZW_PRD/on/demandware.static/-/Sites-givenchy-beauty-master/default/dw67a86ab8/images/P069001/3274872372146_P069001_L_INTERDIT-EDP-50ML_0.png"></div>
+      <div class="prod-name">L'INTERDIT 心无禁忌</div>
+      <div class="prod-sub">女士淡香精 50ML</div>
+      <div class="prod-price">¥1,120</div>
+    </div>
+    <div class="prod-card">
+      <div class="prod-img-wrap"><img src="https://www.givenchybeauty.cn/dw/image/v2/BBZW_PRD/on/demandware.static/-/Sites-givenchy-beauty-master/default/dwbaa40abc/images/P069262/interdit_rouge.png"></div>
+      <div class="prod-name">INTERDIT ROUGE</div>
+      <div class="prod-sub">心无禁忌迷红香水</div>
+      <div class="prod-price">¥1,280</div>
+    </div>
+    <div class="prod-card">
+      <div class="prod-img-wrap"><img src="https://www.givenchybeauty.cn/dw/image/v2/BBZW_PRD/on/demandware.static/-/Sites-givenchy-beauty-master/default/dw4cf4d211/images/P011050/3274872399013_P011050_GG_EDPB_79_6_50ML_a_0.png"></div>
+      <div class="prod-name">GENTLEMEN SOCIETY</div>
+      <div class="prod-sub">绅士浓情淡香精 50ML</div>
+      <div class="prod-price">¥980</div>
+    </div>
+    <div class="prod-card">
+      <div class="prod-img-wrap"><img src="https://www.givenchybeauty.cn/dw/image/v2/BBZW_PRD/on/demandware.static/-/Sites-givenchy-beauty-master/default/dw17f632f4/images/P090721/3274872413627_P090721_PL-FDT-30ML-1-N80_0.png"></div>
+      <div class="prod-name">PRISME LIBRE</div>
+      <div class="prod-sub">暗皮救星粉底液 30ML</div>
+      <div class="prod-price">¥520</div>
+    </div>
+    <div class="prod-card">
+      <div class="prod-img-wrap"><img src="https://www.givenchybeauty.cn/dw/image/v2/BBZW_PRD/on/demandware.static/-/Sites-givenchy-beauty-master/default/dwf5d5fd77/images/P090401/3274872430921_P090401_PL-FDT-MATTE-30ML-1-N80_0.png"></div>
+      <div class="prod-name">TEINT COUTURE</div>
+      <div class="prod-sub">明星柔雾粉底液 30ML</div>
+      <div class="prod-price">¥480</div>
+    </div>
+    <div class="prod-card">
+      <div class="prod-img-wrap"><img src="https://www.givenchybeauty.cn/dw/image/v2/BBZW_PRD/on/demandware.static/-/Sites-givenchy-beauty-master/default/dwade722fe/images/P084773/3274872442924_P084773_LE-ROUGE-INTE-INT-SILK-3,4G-N326_0.png"></div>
+      <div class="prod-name">LE ROUGE INTERDIT</div>
+      <div class="prod-sub">高定禁忌唇膏 3.4G</div>
+      <div class="prod-price">¥320</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTENT TILES (Latest) -->
+<section class="content-tiles">
+  <h2 class="content-tiles-title">最新资讯</h2>
+  <div class="content-grid">
+    <a href="#" class="content-card">
+      <img src="https://www.givenchybeauty.cn/on/demandware.static/-/Library-Sites-GivenchySharedLibrary/default/dwbe9f0c17/LATEST/2024/FRAG/LCP_Coeur-Fou_Latest_Desktop.jpg" class="content-card-img">
+      <div class="content-card-title">心无禁忌 · 全新香氛</div>
+    </a>
+    <a href="#" class="content-card">
+      <img src="https://www.givenchybeauty.cn/on/demandware.static/-/Library-Sites-GivenchySharedLibrary/default/dw6e209564/LATEST/2024/SKINCARE/LSN_Lace-Face-Mask_Latest_Desktop.jpg" class="content-card-img">
+      <div class="content-card-title">高定蕾丝面膜</div>
+    </a>
+  </div>
+</section>
+
+<!-- MAISON (Black BG Section) -->
+<section class="maison">
+  <div class="maison-inner">
+    <div class="maison-header">
+      <div class="maison-sub">MAISON GIVENCHY</div>
+      <h2 class="maison-title">品牌世界</h2>
+    </div>
+    <div class="maison-grid">
+      <div class="maison-card">
+        <img src="https://www.givenchybeauty.cn/on/demandware.static/-/Library-Sites-GivenchySharedLibrary/default/dw0c2f4af2/QuickAccess/2025/FRAG/QA_INTERDIT_ABSOLU.jpg" class="maison-card-img">
+        <div class="maison-card-title">香水系列</div>
+        <div class="maison-card-sub">探索全部香氛</div>
+      </div>
+      <div class="maison-card">
+        <img src="https://www.givenchybeauty.cn/dw/image/v2/BBZW_PRD/on/demandware.static/-/Sites-givenchy-beauty-master/default/dw06dab2c9/images/P069001/INT-EDP_PDM_INGREDIENTS_800x800_3.jpg" class="maison-card-img">
+        <div class="maison-card-title">品牌故事</div>
+        <div class="maison-card-sub">法式优雅传承</div>
+      </div>
+      <div class="maison-card">
+        <img src="https://www.givenchybeauty.cn/dw/image/v2/BBZW_PRD/on/demandware.static/-/Sites-givenchy-beauty-master/default/dw3c2c1b86/images/P069262/INTERDIT-EDPRU_PDM_NM_INGREDIENTS+PACK_EDPR_3.jpg" class="maison-card-img">
+        <div class="maison-card-title">限定系列</div>
+        <div class="maison-card-sub">探索限量新品</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="newsletter">
+  <h2>订阅纪梵希</h2>
+  <p>第一时间获取新品资讯与美妆灵感</p>
+  <form class="nl-form" onsubmit="event.preventDefault();this.querySelector('button').textContent='感谢订阅';setTimeout(()=>{this.querySelector('button').textContent='订阅';this.reset()},2000)">
+    <input type="email" placeholder="请输入您的邮箱" required>
+    <button type="submit">订阅</button>
+  </form>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-col"><h4>产品系列</h4><ul><li><a href="#">彩妆</a></li><li><a href="#">护肤</a></li><li><a href="#">香水</a></li><li><a href="#">新品上市</a></li></ul></div>
+    <div class="footer-col"><h4>客户服务</h4><ul><li><a href="#">配送信息</a></li><li><a href="#">退换政策</a></li><li><a href="#">订单查询</a></li><li><a href="#">常见问题</a></li></ul></div>
+    <div class="footer-col"><h4>关于纪梵希</h4><ul><li><a href="#">品牌故事</a></li><li><a href="#">门店查询</a></li><li><a href="#">会员中心</a></li></ul></div>
+    <div class="footer-col"><h4>联系方式</h4><div class="footer-phone">400 920 1177</div><div class="footer-social"><a href="#"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8.691 2.188C3.891 2.188 0 5.476 0 9.53c0 2.212 1.17 4.203 3.002 5.55a.59.59 0 01.213.665l-.39 1.48c-.019.07-.048.141-.048.213 0 .163.13.295.29.295a.326.326 0 00.167-.054l1.903-1.114a.864.864 0 01.717-.098 10.16 10.16 0 002.837.403c.276 0 .543-.027.811-.05a6.13 6.13 0 01-.253-1.736c0-3.54 3.305-6.412 7.381-6.412.262 0 .52.018.776.04C16.455 4.826 12.899 2.187 8.691 2.187z"/></svg></a><a href="#"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M10.098 20.323c-3.977.391-7.414-1.406-7.672-4.02-.259-2.609 2.759-5.047 6.74-5.441 3.979-.394 7.413 1.404 7.671 4.018.259 2.6-2.759 5.049-6.737 5.439z"/></svg></a></div></div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2026 GIVENCHY BEAUTY. All Rights Reserved.</span>
+    <div class="footer-links"><a href="#">隐私政策</a><a href="#">使用条款</a></div>
+  </div>
+</footer>
+
+<script>
+// Header scroll effect
+window.addEventListener('scroll',()=>{document.getElementById('header').classList.toggle('scrolled',window.scrollY>30)});
+</script>
+
+<script>
+// Load data from admin panel
+(function(){
+  var d = localStorage.getItem('givenchyData');
+  if(!d) return;
+  try {
+    var data = JSON.parse(d);
+    // Hero
+    var heroImg = document.querySelector('.hero-img');
+    var heroTitle = document.querySelector('.hero-title');
+    var heroTag = document.querySelector('.hero-tag');
+    var heroDesc = document.querySelector('.hero-desc');
+    var heroBtn = document.querySelector('.btn-primary');
+    if(data.heroImg && heroImg) heroImg.src = data.heroImg;
+    if(data.heroTitle && heroTitle) heroTitle.innerHTML = data.heroTitle.replace(/\n/g,'<br>');
+    if(data.heroTag && heroTag) heroTag.textContent = data.heroTag;
+    if(data.heroDesc && heroDesc) heroDesc.innerHTML = data.heroDesc.replace(/\n/g,'<br>');
+    if(data.heroBtn && heroBtn) heroBtn.textContent = data.heroBtn;
+    // Products
+    if(data.products && data.products.length) {
+      var scroll = document.querySelector('.products-scroll');
+      if(scroll) {
+        scroll.innerHTML = data.products.map(function(p){
+          return '<div class="prod-card"><div class="prod-img-wrap"><img src="'+p.img+'"></div><div class="prod-name">'+p.name+'</div><div class="prod-sub">'+p.sub+'</div><div class="prod-price">'+p.price+'</div></div>';
+        }).join('');
+      }
+    }
+    // Newsletter
+    if(data.nlTitle) { var el = document.querySelector('.newsletter h2'); if(el) el.textContent = data.nlTitle; }
+    if(data.nlDesc) { var el = document.querySelector('.newsletter p'); if(el) el.textContent = data.nlDesc; }
+    // Footer
+    if(data.footerPhone) { var el = document.querySelector('.footer-phone'); if(el) el.textContent = data.footerPhone; }
+    if(data.footerCopy) { var el = document.querySelector('.footer-copy'); if(el) el.textContent = data.footerCopy; }
+  } catch(e){}
+})();
+</script>
+</body>
+</html>
