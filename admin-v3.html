@@ -118,6 +118,7 @@ textarea.fi{min-height:80px;resize:vertical}
     <div class="topbar-title" id="pageTitle">顶部公告</div>
     <div class="topbar-right">
       <button class="btn btn-primary" onclick="saveAll()">💾 保存</button>
+      <button class="btn" style="background:#10b981;color:#fff" onclick="publishSite()">🚀 一键发布</button>
     </div>
   </div>
   <div class="content">
@@ -399,6 +400,57 @@ function exportData(){saveAll();var b=new Blob([JSON.stringify(data,null,2)],{ty
 function importData(){document.getElementById('importFile').click();}
 document.getElementById('importFile').addEventListener('change',function(e){var f=e.target.files[0];if(!f)return;var r=new FileReader();r.onload=function(ev){try{data=JSON.parse(ev.target.result);localStorage.setItem('gData',JSON.stringify(data));load();toast('📥 导入成功','s');}catch(e){toast('❌ 格式错误','e');}};r.readAsText(f);});
 function toast(m,t){var el=document.getElementById('toast');el.textContent=m;el.className='toast toast-'+t+' show';setTimeout(function(){el.classList.remove('show');},2500);}
+
+// GitHub Publish
+var GH_TOKEN=localStorage.getItem('ghToken')||'';
+var GH_REPO='kaynai1/givenchy-beauty';
+
+function publishSite(){
+  if(!GH_TOKEN){
+    var tk=prompt('请输入你的 GitHub Token（ghp_ 开头）：');
+    if(!tk)return;
+    GH_TOKEN=tk;
+    localStorage.setItem('ghToken',tk);
+  }
+  saveAll();
+  toast('🚀 正在发布...','s');
+
+  // Get current file SHA (needed for update)
+  fetch('https://api.github.com/repos/'+GH_REPO+'/contents/index.html',{
+    headers:{'Authorization':'token '+GH_TOKEN}
+  })
+  .then(function(r){return r.json();})
+  .then(function(file){
+    // Read local index.html to get template, then inject new data
+    fetch('index.html').then(function(r){return r.text();}).then(function(html){
+      // Replace CONFIG block with new data
+      var dataStr=JSON.stringify(data,null,2);
+      var newHtml=html.replace(/var CONFIG=\{[\s\S]*?\n\};/,'var CONFIG='+dataStr+';');
+      
+      var sha=file.sha;
+      fetch('https://api.github.com/repos/'+GH_REPO+'/contents/index.html',{
+        method:'PUT',
+        headers:{'Authorization':'token '+GH_TOKEN,'Content-Type':'application/json'},
+        body:JSON.stringify({
+          message:'Update site content via admin',
+          content:btoa(unescape(encodeURIComponent(newHtml))),
+          sha:sha
+        })
+      })
+      .then(function(r){return r.json();})
+      .then(function(d){
+        if(d.content){
+          toast('✅ 发布成功！1-2分钟生效','s');
+        } else {
+          toast('❌ 发布失败: '+(d.message||'未知错误'),'e');
+        }
+      })
+      .catch(function(e){toast('❌ 网络错误','e');});
+    });
+  })
+  .catch(function(e){toast('❌ 获取文件失败','e');});
+}
+
 load();
 </script>
 </body>
