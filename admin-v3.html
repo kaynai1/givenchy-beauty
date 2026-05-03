@@ -402,7 +402,7 @@ document.getElementById('importFile').addEventListener('change',function(e){var 
 function toast(m,t){var el=document.getElementById('toast');el.textContent=m;el.className='toast toast-'+t+' show';setTimeout(function(){el.classList.remove('show');},2500);}
 
 // GitHub Publish
-var GH_TOKEN='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';
+var GH_TOKEN=localStorage.getItem('ghToken')||'';
 var GH_REPO='kaynai1/givenchy-beauty';
 
 function publishSite(){
